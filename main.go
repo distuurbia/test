@@ -30,10 +30,29 @@ func main() {
         return
     }
 
+    var number string
+    var letter string
+    var text string
+
     for _, row := range records {
-        number := string(row[0][0])
-        letter := string(row[1][0])
-        text := strings.Join(row[2:], ",")
-        writer.Write([]string{number, letter, text})
+        if row[0] != "" {
+            number = string(row[0][0])
+        }
+
+        if row[1] != "" {
+            letter = string(row[1][0])
+        } else {
+            letter = ""
+        }
+        
+
+        
+        if row[2] != "" {
+            text = strings.Join(row[2:], ",")
+        }
+        
+        if letter != "" && text != "" {
+            writer.Write([]string{number, letter, text})
+        }
     }
 }
